@@ -1,6 +1,8 @@
 services:
   mental-health-app:
-    build: .
+    build:
+      context: src/main/java
+      dockerfile: Dockerfile
     ports:
       - "9090:9090"
     container_name: mental-health-app

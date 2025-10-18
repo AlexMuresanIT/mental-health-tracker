@@ -1,6 +1,11 @@
 spring:
   application:
     name: Mental Health App
+  data:
+    mongodb:
+      uri: mongodb://mongo:27018/mentaldb
+      auto-index-creation: true
+      uuid-representation: standard
 server:
   port: 9090
 
