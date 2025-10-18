@@ -1,0 +1,24 @@
+services:
+  mental-health-app:
+    build: .
+    ports:
+      - "8089:8089"
+    container_name: mental-health-app
+    depends_on:
+      - mongo
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27018/mentaldb
+  mongo:
+    image: mongo:latest
+    container_name: mental-health-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: mentaldb
+    ports:
+      - "27018:27018"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
