@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: Mental Health App
+server:
+  port: 9090
+
+mental-health:
+  login:
+    username: ${USERNAME}
+    password: ${PASSWORD}
