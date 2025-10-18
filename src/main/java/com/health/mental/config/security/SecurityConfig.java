@@ -18,41 +18,38 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    private final String username;
-    private final String password;
+  private final String username;
+  private final String password;
 
-    public SecurityConfig(final MentalHealthConfig mentalHealthConfig) {
-        this.username = mentalHealthConfig.getLogin().username();
-        this.password = mentalHealthConfig.getLogin().password();
-    }
+  public SecurityConfig(final MentalHealthConfig mentalHealthConfig) {
+    this.username = mentalHealthConfig.getLogin().username();
+    this.password = mentalHealthConfig.getLogin().password();
+  }
 
-    @Autowired
-    public void configureGlobal(final AuthenticationManagerBuilder auth) {
-        auth.eraseCredentials(false);
-    }
+  @Autowired
+  public void configureGlobal(final AuthenticationManagerBuilder auth) {
+    auth.eraseCredentials(false);
+  }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        final var admin = User.builder()
-                .username(username)
-                .password(password)
-                .roles(Role.ADMIN.name())
-                .build();
+  @Bean
+  public UserDetailsService userDetailsService() {
+    final var admin =
+        User.builder().username(username).password(password).roles(Role.ADMIN.name()).build();
 
-        return new InMemoryUserDetailsManager(admin);
-    }
+    return new InMemoryUserDetailsManager(admin);
+  }
 
-    @Bean
-    public SecurityFilterChain configure(final HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable)
-                .httpBasic(Customizer.withDefaults())
-                .securityMatcher("/**")
-                .authorizeHttpRequests(request -> request.anyRequest().authenticated())
-                .build();
-    }
+  @Bean
+  public SecurityFilterChain configure(final HttpSecurity http) throws Exception {
+    return http.csrf(AbstractHttpConfigurer::disable)
+        .httpBasic(Customizer.withDefaults())
+        .securityMatcher("/**")
+        .authorizeHttpRequests(request -> request.anyRequest().authenticated())
+        .build();
+  }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 }

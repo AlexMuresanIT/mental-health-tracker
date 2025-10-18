@@ -7,15 +7,15 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 @ConfigurationProperties(prefix = "mental-health")
 public class MentalHealthConfig {
 
-    private LoginData login;
+  private LoginData login;
 
-    public LoginData getLogin() {
-        return login;
-    }
+  public LoginData getLogin() {
+    return login;
+  }
 
-    public void setLogin(final LoginData login) {
-        this.login = login;
-    }
+  public void setLogin(final LoginData login) {
+    this.login = login;
+  }
 
-    public record LoginData(String username, String password) {}
+  public record LoginData(String username, String password) {}
 }
