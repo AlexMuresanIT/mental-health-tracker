@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MentalApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MentalApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(MentalApplication.class, args);
+  }
 }

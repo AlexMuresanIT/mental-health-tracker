@@ -1,0 +1,21 @@
+name: pull-requests.yml
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  assign-author:
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if PR author is assigned
+        uses: toshimaru/auto-author-assign@v2.1.1
+  build-and-run-tests:
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        run: ./gradlew clean test
+        uses: actions/create-github-app-token@v1.11.3
