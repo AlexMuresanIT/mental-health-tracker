@@ -1,7 +1,7 @@
 services:
   mental-health-app:
     build:
-      context: src/main/java
+      context: .
       dockerfile: Dockerfile
     ports:
       - "9090:9090"
@@ -9,16 +9,12 @@ services:
     depends_on:
       - mongo
     environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27018/mentaldb
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/mentaldb
   mongo:
     image: mongo:latest
     container_name: mental-health-mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: mentaldb
     ports:
-      - "27018:27018"
+      - "27018:27017"
     volumes:
       - mongo-data:/data/db
 
