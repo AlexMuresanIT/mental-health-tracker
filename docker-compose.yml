@@ -2,7 +2,7 @@ services:
   mental-health-app:
     build: .
     ports:
-      - "8089:8089"
+      - "9090:9090"
     container_name: mental-health-app
     depends_on:
       - mongo
