@@ -34,7 +34,11 @@ public class SecurityConfig {
   @Bean
   public UserDetailsService userDetailsService() {
     final var admin =
-        User.builder().username(username).password(password).roles(Role.ADMIN.name()).build();
+        User.builder()
+            .username(username)
+            .password(passwordEncoder().encode(password))
+            .roles(Role.ADMIN.name())
+            .build();
 
     return new InMemoryUserDetailsManager(admin);
   }
