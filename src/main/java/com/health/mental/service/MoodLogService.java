@@ -27,10 +27,10 @@ public class MoodLogService {
     maybeUser.ifPresent(
         user -> {
           final var location = locationService.getLocationForIpAddress(ipAddress);
-          final var now = OffsetDateTime.now();
-          final var enhancedMoodLog = MoodLog.enhanceMood(userId, moodLog, location, now);
+          final var createdAt = OffsetDateTime.now();
+          final var enhancedMoodLog = MoodLog.enhanceMoodLog(userId, moodLog, location, createdAt);
           moodLogRepository.save(enhancedMoodLog);
-          userService.addMoodLogForUser(user, enhancedMoodLog);
+          userService.saveMoodLogForUser(user, enhancedMoodLog);
         });
   }
 }

@@ -16,7 +16,7 @@ public record MoodLog(
     Location location,
     OffsetDateTime createdAt) {
 
-  public static MoodLog enhanceMood(
+  public static MoodLog enhanceMoodLog(
       final String userId,
       final MoodLog moodLog,
       final Location location,

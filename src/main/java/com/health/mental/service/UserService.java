@@ -42,8 +42,8 @@ public class UserService {
     return userRepository.findById(userId);
   }
 
-  public void addMoodLogForUser(final User user, final MoodLog moodLog) {
-    userRepository.save(User.ofMoodLogs(user, moodLog));
+  public void saveMoodLogForUser(final User user, final MoodLog moodLog) {
+    userRepository.save(User.addMoodLog(user, moodLog));
   }
 
   private boolean isInvalidUserPassword(final String password) {

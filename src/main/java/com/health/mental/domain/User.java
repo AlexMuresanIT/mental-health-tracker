@@ -27,7 +27,7 @@ public record User(
         user.userMoodLogs());
   }
 
-  public static User ofMoodLogs(final User user, final MoodLog moodLog) {
+  public static User addMoodLog(final User user, final MoodLog moodLog) {
     final var userCurrentMoodLogs =
         user.userMoodLogs() == null ? new LinkedList<MoodLog>() : user.userMoodLogs();
     userCurrentMoodLogs.add(moodLog);
