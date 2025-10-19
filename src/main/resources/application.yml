@@ -14,3 +14,4 @@ mental-health:
   login:
     username: ${USERNAME}
     password: ${PASSWORD}
+  location-base-url: http://ip-api.com/json

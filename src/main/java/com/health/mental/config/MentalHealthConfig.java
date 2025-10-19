@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 public class MentalHealthConfig {
 
   private LoginData login;
+  private String locationBaseUrl;
 
   public LoginData getLogin() {
     return login;
@@ -15,6 +16,14 @@ public class MentalHealthConfig {
 
   public void setLogin(final LoginData login) {
     this.login = login;
+  }
+
+  public String getLocationBaseUrl() {
+    return locationBaseUrl;
+  }
+
+  public void setLocationBaseUrl(final String locationBaseUrl) {
+    this.locationBaseUrl = locationBaseUrl;
   }
 
   public record LoginData(String username, String password) {}

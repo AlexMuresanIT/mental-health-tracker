@@ -1,0 +1,21 @@
+package com.health.mental.config.security;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+public final class SecurityUtils {
+  private static final String DEFAULT_IP_ADDRESS_HEADER = "188.27.129.229";
+
+  private SecurityUtils() {
+    throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+  }
+
+  public static String getUserIpAddress(final HttpServletRequest request) {
+    final var ipAddress = request.getHeader("X-Forwarded-For");
+    if (ipAddress == null || ipAddress.isEmpty()) {
+      return "0:0:0:0:0:0:0:1".equals(request.getRemoteAddr())
+          ? DEFAULT_IP_ADDRESS_HEADER
+          : request.getRemoteAddr();
+    }
+    return ipAddress.split(",")[0];
+  }
+}
