@@ -30,7 +30,8 @@ public class LocationService {
   }
 
   public Location getLocationForIpAddress(final String ipAddress) {
-    return getLocation(fetchLocation(ipAddress));
+      final var locationExtracted = fetchLocation(ipAddress);
+      return getLocation(locationExtracted);
   }
 
   private LocationDTO fetchLocation(final String ipAddress) {
